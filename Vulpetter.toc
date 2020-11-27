@@ -1,0 +1,6 @@
+## Interface: 90001
+## Title: Vulpetter
+## SavedVariablesPerCharacter: _Vulpetter
+## Author: Neruui
+## Version: 8.2.5.10r
+Vulpetter.lua
