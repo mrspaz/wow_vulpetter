@@ -16,7 +16,7 @@ local function onEvent(self, event, ...)
 				table.remove(VulPetter.RecentPets, idx)
 			end
 			
-			if (name == pRec[1]) then
+			if ((name == pRec[1]) and ((cTime - pRec[2]) < 11)) then
 				doPet = false
 			end
 		end
