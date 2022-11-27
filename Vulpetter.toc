@@ -1,4 +1,4 @@
-## Interface: 90005
+## Interface: 100002
 ## Title: Vulpetter
 ## SavedVariablesPerCharacter: _VulpetterInterval
 ## Author: Neruui
