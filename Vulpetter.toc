@@ -2,5 +2,5 @@
 ## Title: Vulpetter
 ## SavedVariablesPerCharacter: _VulpetterInterval
 ## Author: Neruui
-## Version: 1.0.2
+## Version: 1.0.3
 Vulpetter.lua
