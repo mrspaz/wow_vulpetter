@@ -17,28 +17,30 @@ local function doPetInterval(value)
 end
 
 local function onEvent(self, event, ...)
-	local tRace, tRaceEn = UnitRace("target")
-	
-	if (tRaceEn == "Vulpera") then
-		local name, realm = UnitName("target")
-		local cTime = GetTime()
-		local petInt = doPetInterval()
-		local doPet = true
+	if not UnitIsUnit("target", "player") then
+		local tRace, tRaceEn = UnitRace("target")
 		
-		for idx, pRec in pairs(VulPetter.RecentPets) do
-			if ((cTime - pRec[2]) > petInt) then
-				-- Supposedly table.remove is of the devil, but this list should never be very long and I ain't writing an entire gorramn array manipulator for this.
-				table.remove(VulPetter.RecentPets, idx)
+		if (tRaceEn == "Vulpera") then
+			local name, realm = UnitName("target")
+			local cTime = GetTime()
+			local petInt = doPetInterval()
+			local doPet = true
+			
+			for idx, pRec in pairs(VulPetter.RecentPets) do
+				if ((cTime - pRec[2]) > petInt) then
+					-- Supposedly table.remove is of the devil, but this list should never be very long and I ain't writing an entire gorramn array manipulator for this.
+					table.remove(VulPetter.RecentPets, idx)
+				end
+				
+				if ((name == pRec[1]) and ((cTime - pRec[2]) < petInt+1)) then
+					doPet = false
+				end
 			end
 			
-			if ((name == pRec[1]) and ((cTime - pRec[2]) < petInt+1)) then
-				doPet = false
+			if (doPet) then
+				DoEmote("PET", "target")
+				table.insert(VulPetter.RecentPets, {name, cTime})
 			end
-		end
-		
-		if (doPet) then
-			DoEmote("PET", "target")
-			table.insert(VulPetter.RecentPets, {name, cTime})
 		end
 	end
 end
